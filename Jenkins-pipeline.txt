@@ -1,0 +1,23 @@
+pipeline { 
+    agent any 
+    options {
+        skipStagesAfterUnstable()
+    }
+    stages {
+        stage('Build') { 
+            steps { 
+                echo "getting the code from github" 
+            }
+        }
+        stage('Test'){
+            steps {
+                echo "Testing the code and building" 
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo "Deploying the code to server"
+            }
+        }
+    }
+}
