@@ -1,0 +1,22 @@
+pipeline { 
+    agent { label "$server" }
+
+    options {
+        skipStagesAfterUnstable()
+    }
+    stages {
+        stage('Build') { 
+            steps { 
+                echo "getting the code from github" 
+                git credentialsId: 'Github', url: 'https://github.com/harshaettigi/Jenkins-master-slave.git'
+                
+            }
+        }
+        stage('Deploy index.html to server'){
+            steps {
+                sh "sudo chmod 755 /var/www/html"
+                sh "sudo cp index.html /var/www/html "
+            }
+        }
+    }
+}
